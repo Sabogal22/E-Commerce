@@ -1,3 +1,16 @@
+---
+import TopBar from '../components/layout/TopBar.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -5,533 +18,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>NKDesign - Accesorios para Motos</title>
+    <title>{title} | NKDesign</title>
     <style>
-      html,
+      /* Estilos globales personalizados */
       body {
-        margin: 0;
-        min-height: 100%;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       }
-
-      /* Estilos para dropdowns */
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      /* Animación suave */
-      .transition-all {
-        transition: all 0.3s ease;
-      }
-
+      
       /* Scroll suave */
       html {
         scroll-behavior: smooth;
       }
+      
+      /* Animaciones */
+      .fade-in {
+        animation: fadeIn 0.3s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body class="bg-gray-50">
-    <!-- Navbar Principal -->
-    <nav class="sticky top-0 z-50 bg-white shadow-lg">
-      <!-- Top Bar (Promociones/Contacto) -->
-      <div class="bg-red-600 text-white py-2 px-4">
-        <div
-          class="container mx-auto flex justify-between items-center text-sm"
-        >
-          <div class="flex items-center space-x-4">
-            <span
-              >🔥 <strong>OFERTA ESPECIAL:</strong> Envío gratis en compras mayores
-              a $150.000 COP</span
-            >
-          </div>
-          <div class="flex items-center space-x-6">
-            <a
-              href="tel:+573001234567"
-              class="hover:text-yellow-300 transition"
-            >
-              📞 +57 300 123 4567
-            </a>
-            <a
-              href="https://wa.me/573001234567"
-              class="hover:text-green-300 transition"
-            >
-              💬 WhatsApp
-            </a>
-            <span class="text-yellow-300 font-bold">🇨🇴 Colombia</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main Navbar -->
-      <div class="container mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <!-- Logo -->
-          <a href="/" class="flex items-center space-x-4">
-            <div
-              class="w-20 h-14 bg-gradient-to-br from-gray-900 to-red-700 rounded-xl flex items-center justify-center"
-            >
-              <span class="text-white text-3xl font-bold">NKD</span>
-            </div>
-            <div>
-              <h1 class="text-3xl font-bold text-gray-900">NKDesign</h1>
-              <p class="text-sm text-gray-600 font-medium">
-                Accesorios Premium para Motos
-              </p>
-            </div>
-          </a>
-
-          <!-- User Actions -->
-          <div class="flex items-center space-x-8">
-            <!-- Moneda -->
-            <div
-              class="flex items-center space-x-2 bg-gray-100 px-4 py-2 rounded-full"
-            >
-              <span class="font-bold text-gray-700">COP $</span>
-              <span class="text-gray-600">Pesos Colombianos</span>
-            </div>
-
-            <!-- Carrito -->
-            <a href="/carrito" class="relative group">
-              <div
-                class="flex items-center space-x-3 bg-gray-50 hover:bg-gray-100 px-4 py-3 rounded-xl transition-all"
-              >
-                <svg
-                  class="w-6 h-6 text-red-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-                <div>
-                  <div class="font-medium text-gray-700">Mi Carrito</div>
-                  <div class="text-sm text-gray-500">
-                    3 productos - $450.000
-                  </div>
-                </div>
-              </div>
-              <span
-                class="absolute -top-2 -right-2 bg-red-600 text-white text-sm font-bold rounded-full w-6 h-6 flex items-center justify-center"
-              >
-                3
-              </span>
-            </a>
-
-            <!-- Cuenta / Login -->
-            <a
-              href="/login"
-              class="flex items-center space-x-3 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl transition-all"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                ></path>
-              </svg>
-              <span class="font-medium">Mi Cuenta</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Categorías y Navegación -->
-        <div class="flex items-center justify-between mt-6 pb-2 border-b">
-          <!-- Categorías -->
-          <div class="flex items-center space-x-8">
-            <div class="dropdown relative">
-              <button
-                class="flex items-center space-x-3 bg-gray-900 text-white hover:bg-gray-800 font-medium py-3 px-5 rounded-xl transition-all"
-              >
-                <span class="text-xl">🏍️</span>
-                <span>CATEGORÍAS</span>
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              <div
-                class="dropdown-content absolute top-full left-0 mt-2 w-80 bg-white shadow-2xl rounded-xl py-4 hidden z-50"
-              >
-                <!-- Accesorios Estéticos -->
-                <div class="mb-3">
-                  <h4 class="font-bold text-gray-900 px-5 mb-2">
-                    🎨 Accesorios Estéticos
-                  </h4>
-                  <div class="space-y-1">
-                    <a
-                      href="/accesorios/pegatinas"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Pegatinas y Calcomanías</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                    <a
-                      href="/accesorios/protectores"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Protectores de Tanque</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                    <a
-                      href="/accesorios/iluminacion"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Iluminación LED</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                  </div>
-                </div>
-
-                <!-- Accesorios Funcionales -->
-                <div class="mb-3">
-                  <h4 class="font-bold text-gray-900 px-5 mb-2">
-                    ⚙️ Accesorios Funcionales
-                  </h4>
-                  <div class="space-y-1">
-                    <a
-                      href="/accesorios/portacelulares"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Porta Celulares</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                    <a
-                      href="/accesorios/luces"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Luces Auxiliares</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                    <a
-                      href="/accesorios/bauleras"
-                      class="flex items-center justify-between px-5 py-2 hover:bg-gray-50"
-                    >
-                      <span>Bauleras y Alforjas</span>
-                      <span class="text-red-600 text-sm">→</span>
-                    </a>
-                  </div>
-                </div>
-
-                <!-- Por Marca -->
-                <div>
-                  <h4 class="font-bold text-gray-900 px-5 mb-2">
-                    🏁 Por Marca
-                  </h4>
-                  <div class="grid grid-cols-2 gap-2 px-5">
-                    <a
-                      href="/marcas/yamaha"
-                      class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded"
-                      >Yamaha</a
-                    >
-                    <a
-                      href="/marcas/honda"
-                      class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded"
-                      >Honda</a
-                    >
-                    <a
-                      href="/marcas/suzuki"
-                      class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded"
-                      >Suzuki</a
-                    >
-                    <a
-                      href="/marcas/kawasaki"
-                      class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded"
-                      >Kawasaki</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Navegación Principal -->
-            <div class="flex items-center space-x-8">
-              <a
-                href="/"
-                class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition"
-              >
-                🏠 INICIO
-              </a>
-              <a
-                href="/productos"
-                class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition"
-              >
-                📦 TODOS LOS PRODUCTOS
-              </a>
-              <a
-                href="/nuevo"
-                class="text-red-600 font-medium py-2 border-b-2 border-red-600"
-              >
-                🆕 NUEVOS PRODUCTOS
-              </a>
-              <a
-                href="/ofertas"
-                class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition"
-              >
-                🔥 OFERTAS ESPECIALES
-              </a>
-              <a
-                href="/personalizados"
-                class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition"
-              >
-                ✨ DISEÑOS PERSONALIZADOS
-              </a>
-            </div>
-          </div>
-
-          <!-- Acciones adicionales -->
-          <div class="flex items-center space-x-6">
-            <a
-              href="/contacto"
-              class="text-gray-700 hover:text-red-600 font-medium flex items-center space-x-2"
-            >
-              <span>📞</span>
-              <span>SOPORTE</span>
-            </a>
-            <a
-              href="/blog"
-              class="text-gray-700 hover:text-red-600 font-medium flex items-center space-x-2"
-            >
-              <span>📖</span>
-              <span>BLOG</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
+    <TopBar />
+    <Navbar />
+    
     <!-- Contenido principal -->
     <main class="min-h-screen">
       <slot />
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-20">
-      <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-4 gap-12">
-          <!-- Columna 1: Información -->
-          <div>
-            <div class="flex items-center space-x-3 mb-6">
-              <div
-                class="w-16 h-12 bg-gradient-to-br from-gray-900 to-red-700 rounded-lg flex items-center justify-center"
-              >
-                <span class="text-white text-2xl font-bold">NKD</span>
-              </div>
-              <div>
-                <h2 class="text-2xl font-bold">NKDesign</h2>
-                <p class="text-gray-400 text-sm">
-                  Accesorios Premium para Motos
-                </p>
-              </div>
-            </div>
-            <p class="text-gray-400 mb-6">
-              Especialistas en accesorios y personalización para motos. Diseños
-              únicos y calidad premium para los verdaderos amantes de las dos
-              ruedas.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center"
-              >
-                <span>📘</span>
-              </a>
-              <a
-                href="#"
-                class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center"
-              >
-                <span>📸</span>
-              </a>
-              <a
-                href="#"
-                class="bg-gray-800 hover:bg-gray-700 w-10 h-10 rounded-full flex items-center justify-center"
-              >
-                <span>🎥</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Columna 2: Categorías -->
-          <div>
-            <h3 class="text-lg font-bold mb-6 border-l-4 border-red-600 pl-3">
-              CATEGORÍAS
-            </h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="/accesorios/pegatinas"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span class="text-red-500">•</span>
-                  <span>Pegatinas y Calcomanías</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/accesorios/protectores"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span class="text-red-500">•</span>
-                  <span>Protectores y Forros</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/accesorios/iluminacion"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span class="text-red-500">•</span>
-                  <span>Iluminación LED</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/accesorios/portacelulares"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span class="text-red-500">•</span>
-                  <span>Accesorios Funcionales</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/personalizados"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span class="text-red-500">•</span>
-                  <span>Diseños Personalizados</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Columna 3: Enlaces -->
-          <div>
-            <h3 class="text-lg font-bold mb-6 border-l-4 border-red-600 pl-3">
-              ENLACES RÁPIDOS
-            </h3>
-            <ul class="space-y-3">
-              <li>
-                <a
-                  href="/"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span>🏠</span>
-                  <span>Inicio</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/nosotros"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span>👥</span>
-                  <span>Sobre NKDesign</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contacto"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span>📞</span>
-                  <span>Contacto</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/envios"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span>🚚</span>
-                  <span>Envíos y Entregas</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/garantias"
-                  class="text-gray-400 hover:text-white transition flex items-center space-x-2"
-                >
-                  <span>✅</span>
-                  <span>Garantías</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Columna 4: Contacto -->
-          <div>
-            <h3 class="text-lg font-bold mb-6 border-l-4 border-red-600 pl-3">
-              CONTACTO
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start space-x-3">
-                <span class="text-red-500 mt-1">📍</span>
-                <div>
-                  <div class="font-medium">Sede Principal</div>
-                  <div class="text-gray-400 text-sm">Bogotá, Colombia</div>
-                </div>
-              </li>
-              <li class="flex items-center space-x-3">
-                <span class="text-red-500">📞</span>
-                <div>
-                  <div class="font-medium">+57 300 123 4567</div>
-                  <div class="text-gray-400 text-sm">Lun-Vie: 8am - 6pm</div>
-                </div>
-              </li>
-              <li class="flex items-center space-x-3">
-                <span class="text-red-500">✉️</span>
-                <div>
-                  <div class="font-medium">ventas@nkdesign.com</div>
-                  <div class="text-gray-400 text-sm">Respuesta en 24h</div>
-                </div>
-              </li>
-              <li class="flex items-center space-x-3">
-                <span class="text-red-500">💬</span>
-                <div>
-                  <div class="font-medium">WhatsApp</div>
-                  <div class="text-gray-400 text-sm">Chat directo</div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Separador -->
-        <div class="border-t border-gray-800 mt-12 pt-8">
-          <div class="flex justify-between items-center">
-            <div class="text-gray-500">
-              © 2024 NKDesign - Accesorios para Motos. Todos los derechos
-              reservados.
-            </div>
-            <div class="flex items-center space-x-6 text-gray-500">
-              <a href="#" class="hover:text-white">Términos y Condiciones</a>
-              <a href="#" class="hover:text-white">Política de Privacidad</a>
-              <div class="flex items-center space-x-2">
-                <span class="text-xl">🇨🇴</span>
-                <span>Hecho en Colombia</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </body>
 </html>

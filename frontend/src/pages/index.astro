@@ -1,9 +1,63 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-import "../styles/global.css";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Inicio">
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-5xl font-bold mb-6">Accesorios Premium para tu Moto</h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Descubre nuestra colección exclusiva de pegatinas, protectores y accesorios personalizados
+      </p>
+      <a 
+        href="/productos" 
+        class="inline-block bg-white text-red-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-xl text-lg transition"
+      >
+        Ver Catálogo
+      </a>
+    </div>
+  </div>
+
+  <!-- Productos destacados -->
+  <div class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+      Productos Destacados
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Producto 1 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+        <div class="text-5xl mb-4">🏍️</div>
+        <h3 class="text-xl font-bold mb-2">Pegatinas Racing</h3>
+        <p class="text-gray-600 mb-4">Kit completo para personalizar tu moto</p>
+        <div class="text-2xl font-bold text-red-600">$89.000 COP</div>
+        <a href="/productos/1" class="block mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">
+          Ver Detalles
+        </a>
+      </div>
+      
+      <!-- Producto 2 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+        <div class="text-5xl mb-4">🛡️</div>
+        <h3 class="text-xl font-bold mb-2">Protector de Tanque</h3>
+        <p class="text-gray-600 mb-4">Protección y estilo en carbono</p>
+        <div class="text-2xl font-bold text-red-600">$120.000 COP</div>
+        <a href="/productos/2" class="block mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">
+          Ver Detalles
+        </a>
+      </div>
+      
+      <!-- Producto 3 -->
+      <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+        <div class="text-5xl mb-4">💡</div>
+        <h3 class="text-xl font-bold mb-2">Luces LED RGB</h3>
+        <p class="text-gray-600 mb-4">Iluminación personalizable</p>
+        <div class="text-2xl font-bold text-red-600">$150.000 COP</div>
+        <a href="/productos/3" class="block mt-4 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg">
+          Ver Detalles
+        </a>
+      </div>
+    </div>
+  </div>
 </Layout>

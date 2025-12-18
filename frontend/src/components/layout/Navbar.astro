@@ -1,0 +1,74 @@
+---
+import Logo from './Logo.astro';
+import UserActions from './UserActions.astro';
+import CategoriesDropdown from './CategoriesDropdown.astro';
+---
+
+<nav class="sticky top-0 z-50 bg-white shadow-lg">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <Logo />
+      <UserActions />
+    </div>
+
+    <!-- Categorías y Navegación -->
+    <div class="flex items-center justify-between mt-6 pb-2 border-b border-gray-200">
+      <!-- Categorías -->
+      <div class="flex items-center space-x-8">
+        <CategoriesDropdown />
+
+        <!-- Navegación Principal -->
+        <div class="flex items-center space-x-8">
+          <a
+            href="/"
+            class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition-colors"
+          >
+            🏠 INICIO
+          </a>
+          <a
+            href="/productos"
+            class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition-colors"
+          >
+            📦 TODOS LOS PRODUCTOS
+          </a>
+          <a
+            href="/nuevo"
+            class="text-red-600 font-medium py-2 border-b-2 border-red-600"
+          >
+            🆕 NUEVOS PRODUCTOS
+          </a>
+          <a
+            href="/ofertas"
+            class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition-colors"
+          >
+            🔥 OFERTAS ESPECIALES
+          </a>
+          <a
+            href="/personalizados"
+            class="text-gray-700 hover:text-red-600 font-medium py-2 border-b-2 border-transparent hover:border-red-600 transition-colors"
+          >
+            ✨ DISEÑOS PERSONALIZADOS
+          </a>
+        </div>
+      </div>
+
+      <!-- Acciones adicionales -->
+      <div class="flex items-center space-x-6">
+        <a
+          href="/contacto"
+          class="text-gray-700 hover:text-red-600 font-medium flex items-center space-x-2"
+        >
+          <span>📞</span>
+          <span>SOPORTE</span>
+        </a>
+        <a
+          href="/blog"
+          class="text-gray-700 hover:text-red-600 font-medium flex items-center space-x-2"
+        >
+          <span>📖</span>
+          <span>BLOG</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

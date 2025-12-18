@@ -1,0 +1,228 @@
+---
+---
+
+<div class="relative" id="categories-dropdown">
+  <!-- Botón del dropdown -->
+  <button
+    id="dropdown-button"
+    class="flex items-center space-x-3 bg-gray-900 text-white hover:bg-gray-800 font-medium py-3 px-5 rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
+  >
+    <span class="text-xl">🏍️</span>
+    <span>CATEGORÍAS</span>
+    <svg
+      id="dropdown-arrow"
+      class="w-5 h-5 transition-transform"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 9l-7 7-7-7"
+      ></path>
+    </svg>
+  </button>
+  
+  <!-- Contenido del dropdown -->
+  <div
+    id="dropdown-content"
+    class="absolute top-full left-0 mt-2 w-80 bg-white shadow-2xl rounded-xl py-4 hidden z-50 border border-gray-100"
+  >
+    <!-- Accesorios Estéticos -->
+    <div class="mb-3">
+      <h4 class="font-bold text-gray-900 px-5 mb-2">
+        🎨 Accesorios Estéticos
+      </h4>
+      <div class="space-y-1">
+        <a
+          href="/accesorios/pegatinas"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Pegatinas y Calcomanías</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+        <a
+          href="/accesorios/protectores"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Protectores de Tanque</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+        <a
+          href="/accesorios/iluminacion"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Iluminación LED</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Accesorios Funcionales -->
+    <div class="mb-3">
+      <h4 class="font-bold text-gray-900 px-5 mb-2">
+        ⚙️ Accesorios Funcionales
+      </h4>
+      <div class="space-y-1">
+        <a
+          href="/accesorios/portacelulares"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Porta Celulares</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+        <a
+          href="/accesorios/luces"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Luces Auxiliares</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+        <a
+          href="/accesorios/bauleras"
+          class="flex items-center justify-between px-5 py-2 hover:bg-red-50 rounded-lg mx-2 transition-colors"
+        >
+          <span>Bauleras y Alforjas</span>
+          <span class="text-red-600 text-sm">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Por Marca -->
+    <div>
+      <h4 class="font-bold text-gray-900 px-5 mb-2">
+        🏁 Por Marca
+      </h4>
+      <div class="grid grid-cols-2 gap-2 px-5">
+        <a
+          href="/marcas/yamaha"
+          class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded-lg transition-colors"
+          >Yamaha</a
+        >
+        <a
+          href="/marcas/honda"
+          class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded-lg transition-colors"
+          >Honda</a
+        >
+        <a
+          href="/marcas/suzuki"
+          class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded-lg transition-colors"
+          >Suzuki</a
+        >
+        <a
+          href="/marcas/kawasaki"
+          class="text-center bg-gray-50 hover:bg-red-50 py-2 rounded-lg transition-colors"
+          >Kawasaki</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dropdown con TypeScript seguro
+  document.addEventListener('DOMContentLoaded', (): void => {
+    const dropdown: HTMLElement | null = document.getElementById('categories-dropdown');
+    const button: HTMLButtonElement | null = document.getElementById('dropdown-button') as HTMLButtonElement;
+    const content: HTMLElement | null = document.getElementById('dropdown-content');
+    const arrow: HTMLElement | null = document.getElementById('dropdown-arrow');
+    
+    // Verificar que todos los elementos existen
+    if (!button || !content || !arrow || !dropdown) {
+      console.error('No se encontraron elementos del dropdown');
+      return;
+    }
+    
+    let isOpen: boolean = false;
+    let closeTimeout: number | null = null;
+    
+    // Función para abrir dropdown
+    const openDropdown = (): void => {
+      if (closeTimeout !== null) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+      content.classList.remove('hidden');
+      content.classList.add('block');
+      arrow.style.transform = 'rotate(180deg)';
+      isOpen = true;
+    };
+    
+    // Función para cerrar dropdown
+    const closeDropdown = (): void => {
+      closeTimeout = window.setTimeout(() => {
+        content.classList.remove('block');
+        content.classList.add('hidden');
+        arrow.style.transform = 'rotate(0deg)';
+        isOpen = false;
+        closeTimeout = null;
+      }, 100);
+    };
+    
+    // Eventos para el botón
+    button.addEventListener('click', (e: MouseEvent): void => {
+      e.stopPropagation();
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    });
+    
+    // Eventos para hover (opcional)
+    dropdown.addEventListener('mouseenter', (): void => {
+      if (!isOpen) {
+        openDropdown();
+      }
+    });
+    
+    dropdown.addEventListener('mouseleave', (): void => {
+      if (isOpen) {
+        closeDropdown();
+      }
+    });
+    
+    // Cerrar al hacer click fuera
+    document.addEventListener('click', (e: MouseEvent): void => {
+      const target = e.target as Node;
+      if (!dropdown.contains(target) && isOpen) {
+        closeDropdown();
+      }
+    });
+    
+    // Cerrar al presionar Escape
+    document.addEventListener('keydown', (e: KeyboardEvent): void => {
+      if (e.key === 'Escape' && isOpen) {
+        closeDropdown();
+      }
+    });
+    
+    // Cerrar dropdown cuando se hace click en un enlace interno
+    const links: NodeListOf<HTMLAnchorElement> = content.querySelectorAll('a');
+    links.forEach((link: HTMLAnchorElement): void => {
+      link.addEventListener('click', (): void => {
+        closeDropdown();
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Animación suave para el dropdown */
+  #dropdown-content {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
